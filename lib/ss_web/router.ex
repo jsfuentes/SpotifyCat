@@ -16,6 +16,8 @@ defmodule SsWeb.Router do
   # Other scopes may use custom stacks.
   scope "/api", SsWeb do
     pipe_through :api
+
+    get "/", ApiController, :index
   end
 
   scope "/", SsWeb do

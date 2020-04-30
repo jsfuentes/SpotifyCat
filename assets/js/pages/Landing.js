@@ -9,7 +9,7 @@ export default function Landing() {
   const [resp, setResp] = useState("");
   useEffect(() => {
     axios
-      .get("/test")
+      .get("/api")
       .then((response) => {
         console.log("Haha", response);
         setResp(response.data);
