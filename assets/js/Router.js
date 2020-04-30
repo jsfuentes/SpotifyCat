@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import DailyIframe from "@daily-co/daily-js";
+import App from "./components/App/App";
+import BrowserUnsupported from "./components/BrowserUnsupported/BrowserUnsupported";
 
 import Loading from "js/components/Loading.js";
 import ErrorBoundary from "js/components/ErrorBoundary";
@@ -16,6 +19,14 @@ toast.configure({
   autoClose: 5000,
 });
 
+export default function Router() {
+  return DailyIframe.supportedBrowser().supported ? (
+    <App />
+  ) : (
+    <BrowserUnsupported />
+  );
+}
+
 // export default function Router() {
 //   const [t, setT] = useState(0);
 //   return (
@@ -29,18 +40,18 @@ toast.configure({
 //   );
 // }
 
-export default function Router() {
-  return (
-    <ErrorBoundary>
-      {/* <Suspense fallback={<Loading />}> */}
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/" component={Landing} />
-          <Route component={my404} />
-        </Switch>
-      </BrowserRouter>
-      {/* </Suspense> */}
-    </ErrorBoundary>
-  );
-}
+// export default function Router() {
+//   return (
+//     <ErrorBoundary>
+//       {/* <Suspense fallback={<Loading />}> */}
+//       <BrowserRouter>
+//         <Switch>
+//           <Route exact path="/login" component={Login} />
+//           <Route exact path="/" component={Landing} />
+//           <Route component={my404} />
+//         </Switch>
+//       </BrowserRouter>
+//       {/* </Suspense> */}
+//     </ErrorBoundary>
+//   );
+// }

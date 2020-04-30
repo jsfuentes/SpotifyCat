@@ -2,7 +2,7 @@ defmodule SsWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", SsWeb.RoomChannel
+  channel "room:*", SsWeb.RoomChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
@@ -16,6 +16,7 @@ defmodule SsWeb.UserSocket do
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
   def connect(_params, socket, _connect_info) do
+    IO.puts "CONNTECTING BABY"
     {:ok, socket}
   end
 

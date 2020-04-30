@@ -18,6 +18,9 @@ config :ss, SsWeb.Endpoint,
   ],
   secret_key_base: secret_key_base
 
+
+config :ss,
+  daily_api: "95b2e51dfac250149d37f58f0c6a96d317fc4e7fcd54d825d72a70cc2f7b70a2"
 # ## Using releases (Elixir v1.9+)
 #
 # If you are doing OTP releases, you need to instruct Phoenix

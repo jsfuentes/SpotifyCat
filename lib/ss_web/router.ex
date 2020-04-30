@@ -18,6 +18,7 @@ defmodule SsWeb.Router do
     pipe_through :api
 
     get "/", ApiController, :index
+    post "/join", ApiController, :join
   end
 
   scope "/", SsWeb do
