@@ -1,14 +1,15 @@
 import React, { useEffect, useState, useCallback } from "react";
-import Call from "../Call/Call";
-import StartButton from "../StartButton/StartButton";
-// import api from "../../api";
-import "./App.css";
-import Tray from "../Tray/Tray";
-import CallObjectContext from "../../CallObjectContext";
-import { roomUrlFromPageUrl, pageUrlFromRoomUrl } from "../../urlUtils";
-import DailyIframe from "@daily-co/daily-js";
-import { logDailyEvent } from "../../logUtils";
 import axios from "axios";
+import DailyIframe from "@daily-co/daily-js";
+
+import Call from "./Call/Call";
+import StartButton from "js/components/StartButton";
+// import api from "../../api";
+import Tray from "./Tray/Tray";
+import CallObjectContext from "../CallObjectContext";
+import { roomUrlFromPageUrl, pageUrlFromRoomUrl } from "../urlUtils";
+import { logDailyEvent } from "../logUtils";
+import PresenceList from "js/components/PresenceList.js";
 
 const STATE_IDLE = "STATE_IDLE";
 const STATE_CREATING = "STATE_CREATING";
@@ -181,29 +182,32 @@ export default function App() {
   const enableStartButton = appState === STATE_IDLE;
 
   return (
-    <div className="app">
-      {showCall ? (
-        // NOTE: for an app this size, it's not obvious that using a Context
-        // is the best choice. But for larger apps with deeply-nested components
-        // that want to access call object state and bind event listeners to the
-        // call object, this can be a helpful pattern.
-        <CallObjectContext.Provider value={callObject}>
-          <Call roomUrl={roomUrl} />
-          <Tray
-            disabled={!enableCallButtons}
-            onClickLeaveCall={startLeavingCall}
-          />
-        </CallObjectContext.Provider>
-      ) : (
-        <>
-          <StartButton
-            disabled={!enableStartButton}
-            onClick={() => {
-              createCall().then((url) => startJoiningCall(url));
-            }}
-          />
-        </>
-      )}
+    <div className="w-screen h-screen flex flex-row justify-center items-center relative">
+      <PresenceList />
+      <div className="w-3/4 h-full flex justify-center items-center bg-gray-700">
+        {showCall ? (
+          // NOTE: for an app this size, it's not obvious that using a Context
+          // is the best choice. But for larger apps with deeply-nested components
+          // that want to access call object state and bind event listeners to the
+          // call object, this can be a helpful pattern.
+          <CallObjectContext.Provider value={callObject}>
+            <Call roomUrl={roomUrl} />
+            <Tray
+              disabled={!enableCallButtons}
+              onClickLeaveCall={startLeavingCall}
+            />
+          </CallObjectContext.Provider>
+        ) : (
+          <>
+            <StartButton
+              disabled={!enableStartButton}
+              onClick={() => {
+                createCall().then((url) => startJoiningCall(url));
+              }}
+            />
+          </>
+        )}
+      </div>
     </div>
   );
 }

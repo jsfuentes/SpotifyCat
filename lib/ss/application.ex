@@ -9,7 +9,8 @@ defmodule Ss.Application do
     # List all child processes to be supervised
     children = [
       # Start the endpoint when the application starts
-      SsWeb.Endpoint
+      SsWeb.Endpoint,
+      SsWeb.Presence
       # Starts a worker by calling: Ss.Worker.start_link(arg)
       # {Ss.Worker, arg},
     ]
@@ -27,3 +28,5 @@ defmodule Ss.Application do
     :ok
   end
 end
+
+

@@ -6,10 +6,11 @@
 //
 // Pass the token on params as below. Or remove it
 // from the params if you are not using authentication.
-import { Socket } from "phoenix";
+import { Socket, Presence } from "phoenix";
+import { uuid } from "uuidv4";
 
 // let socket = new Socket("/socket", { params: { token: window.userToken } });
-let socket = new Socket("/socket");
+const socket = new Socket("/socket", { params: { user_id: uuid() } });
 
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,
@@ -56,7 +57,7 @@ let socket = new Socket("/socket");
 socket.connect();
 
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("room:lobby", {});
+const channel = socket.channel("room:lobby", {});
 channel
   .join()
   .receive("ok", (resp) => {
@@ -66,13 +67,15 @@ channel
     console.log("Unable to join", resp);
   });
 
-setTimeout(() => {
-  console.log("SENT MSG");
-  channel.push("new_msg", { body: "love you bb" });
-}, 4000);
+// setTimeout(() => {
+//   console.log("SENT MSG");
+//   channel.push("new_msg", { body: "love you bb" });
+// }, 4000);
 
 channel.on("new_msg", (payload) => {
   console.log("NEW_MSG", payload);
 });
+
+export const presence = new Presence(channel);
 
 export default socket;

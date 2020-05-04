@@ -3,9 +3,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DailyIframe from "@daily-co/daily-js";
-import App from "./components/App/App";
-import BrowserUnsupported from "./components/BrowserUnsupported/BrowserUnsupported";
 
+import App from "js/components/App.js";
+import BrowserUnsupported from "js/components/BrowserUnsupported/BrowserUnsupported";
 import Loading from "js/components/Loading.js";
 import ErrorBoundary from "js/components/ErrorBoundary";
 

@@ -1,5 +1,4 @@
 import React from "react";
-import "./StartButton.css";
 
 /**
  * Props:
@@ -9,7 +8,7 @@ import "./StartButton.css";
 export default function StartButton(props) {
   return (
     <button
-      className="start-button"
+      className="bg-black text-gray-200 p-4 hover:bg-gray-900"
       disabled={props.disabled}
       onClick={props.onClick}
     >
