@@ -8,6 +8,7 @@
 // from the params if you are not using authentication.
 import { Socket, Presence } from "phoenix";
 import { uuid } from "uuidv4";
+const debug = require("debug")("app:socket");
 
 // let socket = new Socket("/socket", { params: { token: window.userToken } });
 const socket = new Socket("/socket", { params: { user_id: uuid() } });
@@ -61,19 +62,19 @@ const channel = socket.channel("room:lobby", {});
 channel
   .join()
   .receive("ok", (resp) => {
-    console.log("Joined successfully", resp);
+    debug("Joined successfully", resp);
   })
   .receive("error", (resp) => {
-    console.log("Unable to join", resp);
+    debug("Unable to join", resp);
   });
 
-// setTimeout(() => {
-//   console.log("SENT MSG");
-//   channel.push("new_msg", { body: "love you bb" });
-// }, 4000);
+setTimeout(() => {
+  debug("SENT MSG");
+  channel.push("new_msg", { body: "tick" });
+}, 4000);
 
 channel.on("new_msg", (payload) => {
-  console.log("NEW_MSG", payload);
+  debug("NEW_MSG", payload);
 });
 
 export const presence = new Presence(channel);

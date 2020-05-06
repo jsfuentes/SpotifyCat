@@ -17,6 +17,7 @@ if (process.env.NODE_ENV !== "production") {
 
   //check for existence because optional
   if (conf.has("SENTRY_DNS") && conf.get("SENTRY_DNS") !== "") {
+    console.log("Trying to init");
     Sentry.init({ dsn: conf.get("SENTRY_DNS") });
   }
 }
