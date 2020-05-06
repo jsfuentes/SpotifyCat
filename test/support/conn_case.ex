@@ -1,4 +1,4 @@
-defmodule SsWeb.ConnCase do
+defmodule ReactPhoenixWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -11,7 +11,7 @@ defmodule SsWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use SsWeb.ConnCase, async: true`, although
+  by setting `use ReactPhoenixWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -21,14 +21,20 @@ defmodule SsWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      alias SsWeb.Router.Helpers, as: Routes
+      alias ReactPhoenixWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint SsWeb.Endpoint
+      @endpoint ReactPhoenixWeb.Endpoint
     end
   end
 
-  setup _tags do
+  setup tags do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(ReactPhoenix.Repo)
+
+    unless tags[:async] do
+      Ecto.Adapters.SQL.Sandbox.mode(ReactPhoenix.Repo, {:shared, self()})
+    end
+
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

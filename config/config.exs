@@ -7,13 +7,16 @@
 # General application configuration
 use Mix.Config
 
+config :react_phoenix,
+  ecto_repos: [ReactPhoenix.Repo]
+
 # Configures the endpoint
-config :ss, SsWeb.Endpoint,
+config :react_phoenix, ReactPhoenixWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "UrE5M4f2Q2emXrPcnce4MovPe9MXuiK/XCnPPyacNaRSl99tUYh1sr6l9yqcX1Pf",
-  render_errors: [view: SsWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Ss.PubSub, adapter: Phoenix.PubSub.PG2],
-  live_view: [signing_salt: "MmmxQkxp"]
+  secret_key_base: "1V9L26qo/kU8WDVZK/6b0aN4uWp+dcSt//xQCyybiPpyeN/aqVtWhNitrTK0ifUi",
+  render_errors: [view: ReactPhoenixWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: ReactPhoenix.PubSub, adapter: Phoenix.PubSub.PG2],
+  live_view: [signing_salt: "sOJVGmu7"]
 
 # Configures Elixir's Logger
 config :logger, :console,

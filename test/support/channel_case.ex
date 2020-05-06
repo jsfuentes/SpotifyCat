@@ -1,4 +1,4 @@
-defmodule SsWeb.ChannelCase do
+defmodule ReactPhoenixWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -11,7 +11,7 @@ defmodule SsWeb.ChannelCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use SsWeb.ChannelCase, async: true`, although
+  by setting `use ReactPhoenixWeb.ChannelCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -23,11 +23,17 @@ defmodule SsWeb.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint SsWeb.Endpoint
+      @endpoint ReactPhoenixWeb.Endpoint
     end
   end
 
-  setup _tags do
+  setup tags do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(ReactPhoenix.Repo)
+
+    unless tags[:async] do
+      Ecto.Adapters.SQL.Sandbox.mode(ReactPhoenix.Repo, {:shared, self()})
+    end
+
     :ok
   end
 end
