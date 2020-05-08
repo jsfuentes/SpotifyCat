@@ -10,8 +10,9 @@ import { Socket, Presence } from "phoenix";
 import { uuid } from "uuidv4";
 const debug = require("debug")("app:socket");
 
+const user_id = uuid();
 // let socket = new Socket("/socket", { params: { token: window.userToken } });
-const socket = new Socket("/socket", { params: { user_id: uuid() } });
+const socket = new Socket("/socket", { params: { user_id } });
 
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,
@@ -56,6 +57,8 @@ const socket = new Socket("/socket", { params: { user_id: uuid() } });
 //
 // Finally, connect to the socket:
 socket.connect();
+
+export const myChannel = socket.channel(`user:${user_id}`, {});
 
 // Now that you are connected, you can join channels with a topic:
 const channel = socket.channel("room:lobby", {});

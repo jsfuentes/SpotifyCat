@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { axios } from "js/utils.js";
-import Navbar from "js/components/Navbar";
-import Footer from "js/components/Footer";
+import { axios } from "src/utils.js";
+import Navbar from "src/components/Navbar";
+import Footer from "src/components/Footer";
 
 export default function Landing() {
   const [resp, setResp] = useState("");

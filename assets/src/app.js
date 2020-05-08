@@ -4,10 +4,10 @@ import * as Sentry from "@sentry/browser";
 
 import Router from "./Router";
 import * as serviceWorker from "./serviceWorker";
-import "../css/tailwind.css";
-import conf from "js/conf";
+import "src/css/index.css";
+import conf from "src/conf";
 import "phoenix_html";
-import socket from "js/socket.js";
+import socket from "src/socket.js";
 
 if (process.env.NODE_ENV !== "production") {
   localStorage.debug = "app:*";

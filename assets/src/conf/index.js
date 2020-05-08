@@ -3,7 +3,7 @@
  Mimics the interface of npm package `config`
 */
 import _ from "lodash";
-import defaults from "js/conf/default.js";
+import defaults from "src/conf/default.js";
 let envConf;
 try {
   const moduleEnv = require("./" +

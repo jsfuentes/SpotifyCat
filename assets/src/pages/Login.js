@@ -1,9 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-import { axios } from "js/utils.js";
-import Navbar from "js/components/Navbar";
-import Footer from "js/components/Footer";
+import { axios } from "src/utils.js";
+import Navbar from "src/components/Navbar";
+import Footer from "src/components/Footer";
 
 export default function Login() {
   const { handleSubmit, register, errors } = useForm();

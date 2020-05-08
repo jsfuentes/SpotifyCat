@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-import { presence } from "js/socket.js";
+import { presence } from "src/socket.js";
 const debug = require("debug")("app:components:Presence");
 
 function PresenceList(props) {

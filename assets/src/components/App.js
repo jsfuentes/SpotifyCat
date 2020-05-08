@@ -3,13 +3,15 @@ import axios from "axios";
 import DailyIframe from "@daily-co/daily-js";
 
 import Call from "./Call/Call";
-import StartButton from "js/components/StartButton";
+import StartButton from "src/components/StartButton";
 // import api from "../../api";
 import Tray from "./Tray/Tray";
 import CallObjectContext from "../CallObjectContext";
 import { roomUrlFromPageUrl, pageUrlFromRoomUrl } from "../urlUtils";
 import { logDailyEvent } from "../logUtils";
-import PresenceList from "js/components/PresenceList.js";
+import PresenceList from "src/components/PresenceList.js";
+import { myChannel } from "src/socket.js";
+const debug = require("debug")("app:App");
 
 const STATE_IDLE = "STATE_IDLE";
 const STATE_CREATING = "STATE_CREATING";
@@ -23,6 +25,24 @@ export default function App() {
   const [roomUrl, setRoomUrl] = useState(null);
   const [callObject, setCallObject] = useState(null);
 
+  useEffect(() => {
+    myChannel
+      .join()
+      .receive("ok", (resp) => {
+        debug("Joined personal", resp);
+      })
+      .receive("error", (resp) => {
+        debug("Unable to join personal", resp);
+      });
+
+    myChannel.on("new_room", (payload) => {
+      setAppState(STATE_CREATING);
+      debug("new_room PERSONAL", payload);
+      const url = payload.url;
+      startJoiningCall(url);
+    });
+    return () => myChannel.off("new_room");
+  }, []);
   /**
    * Creates a new call room.
    */

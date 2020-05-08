@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment";
-import HeartImg from "js/img/heart.png";
-// import GlobeImg from "js/img/globe.png";
+import HeartImg from "src/img/heart.png";
+// import GlobeImg from "src/img/globe.png";
 import Logo from "./Logo";
 
 export default function Footer() {

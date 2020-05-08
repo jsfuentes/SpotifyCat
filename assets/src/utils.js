@@ -1,5 +1,5 @@
 import { default as axiosBase } from "axios";
-import conf from "js/conf";
+import conf from "src/conf";
 
 export let inProd = process.env.NODE_ENV === "production";
 
