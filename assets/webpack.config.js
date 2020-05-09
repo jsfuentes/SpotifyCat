@@ -39,7 +39,7 @@ module.exports = (env, options) => ({
             loader: require.resolve("url-loader"),
             options: {
               limit: imageInlineSizeLimit,
-              name: "img/[name].[hash:8].[ext]",
+              name: "../img/[name].[hash:8].[ext]",
             },
           },
           {
@@ -89,7 +89,7 @@ module.exports = (env, options) => ({
             // by webpacks internal loaders.
             exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
             options: {
-              name: "img/[name].[hash:8].[ext]",
+              name: "../img/[name].[hash:8].[ext]",
             },
           },
           // ** STOP ** Are you adding a new loader?

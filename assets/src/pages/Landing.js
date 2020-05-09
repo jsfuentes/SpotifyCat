@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { axios } from "src/utils.js";
+import { axios } from "src/utils/utils.js";
 import Navbar from "src/components/Navbar";
 import Footer from "src/components/Footer";
 
@@ -30,7 +30,7 @@ export default function Landing() {
       <div className="w-full p-8">
         <div className="px-4 pb-4 flex flex-col justify-center items-center">
           <div className="text-4xl block font-bold mb-4">
-            Welcome to React Base
+            Welcome to React Base BB
           </div>
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4"

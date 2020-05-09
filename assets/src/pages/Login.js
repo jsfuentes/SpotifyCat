@@ -1,86 +1,88 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { useContext } from "react";
+import { toast } from "react-toastify";
+import { useLocation, useHistory } from "react-router-dom";
+import queryString from "query-string";
+import GoogleLogin from "react-google-login";
+import * as Sentry from "@sentry/browser";
 
-import { axios } from "src/utils.js";
+import conf from "src/conf";
+import UserContext from "src/contexts/UserContext.js";
+import { axios } from "src/utils/utils.js";
 import Navbar from "src/components/Navbar";
-import Footer from "src/components/Footer";
+import Button from "src/components/Button";
+const debug = require("debug")("app:pages:Login");
 
-export default function Login() {
-  const { handleSubmit, register, errors } = useForm();
+//Can set "route" and "msg" with query params
+function Login() {
+  const location = useLocation();
+  const history = useHistory();
+  const { setUser } = useContext(UserContext);
 
-  function onSubmit(user) {
-    console.log(user);
-    axios
-      .post("/user", user)
-      .then((resp) => console.log("resp recieved", resp));
+  const params = queryString.parse(location.search);
+
+  async function onSignIn(googleUser) {
+    if (googleUser.error) {
+      if (googleUser.error === "popup_closed_by_user") {
+        return;
+      }
+
+      console.error("Failed to login", googleUser.error);
+      Sentry.captureMessage(`${googleUser.error} from google login`);
+      return;
+    }
+
+    debug("GUSER", googleUser, googleUser.accessToken);
+    try {
+      const resp = await axios.post("/api/users", {
+        user: { gaccess_token: googleUser.accessToken },
+      });
+      const newUser = resp.data;
+      debug("Login Success: ", newUser);
+      setUser(newUser);
+      const newRoute = params.route ? params.route : "/";
+      history.push(newRoute);
+    } catch (err) {
+      if (err.response && err.response.status === 401) {
+        debug("Unauthorized user");
+        Sentry.setExtra("access_token", googleUser.accessToken);
+        Sentry.captureMessage("Bad login");
+        toast("Unknown email, try a different account or contact support");
+      } else {
+        Sentry.captureException(err);
+        toast("Problem authenticating user with server, contact support");
+      }
+    }
   }
 
   return (
-    <>
-      <Navbar />
-      <div className="w-full p-8 flex flex-col justify-center items-center">
-        <form
-          className="inline-block border-4 border-solid rounded-sm flex flex-col justify-center items-center p-6 mb-4"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <div className="text-3xl font-bold">Login</div>
-          <div className="mt-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="username"
+    <div className="flex flex-col h-screen w-screen">
+      <Navbar
+        inContainer={false}
+        className="row-start-1 row-end-2 col-start-1 col-end-4"
+      />
+      <div className="flex flex-1 w-full flex-col items-center justify-center">
+        <div className="text-center text-2xl lg:text-2.5xl font-medium mb-12">
+          {params.msg ? params.msg : "Welcome to Slingshow!"}
+        </div>
+        <GoogleLogin
+          clientId={conf.get("GOOGLE_CLIENT_ID")}
+          buttonText="Login"
+          onSuccess={onSignIn}
+          onFailure={onSignIn}
+          cookiePolicy={"single_host_origin"}
+          render={(renderProps) => (
+            <Button
+              size="large"
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
             >
-              Username
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              name="username"
-              type="text"
-              placeholder="Username"
-              ref={register({ required: true })}
-            />
-          </div>
-          {errors.username && (
-            <p className="mt-2 text-red-500 text-xs italic">
-              Username is required!
-            </p>
+              Login With Google
+            </Button>
           )}
-          <div className="mt-6">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              Password
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              name="password"
-              type="password"
-              placeholder="********"
-              ref={register({ required: true, minLength: 8 })}
-            />
-          </div>
-          {errors.password && (
-            <p className="mt-2 text-red-500 text-xs italic">
-              Password of minimum length 8 is required!
-            </p>
-          )}
-          <div className="mt-6 flex items-center justify-between">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit"
-            >
-              Login
-            </button>
-            <a
-              className="ml-6 inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-              href="#"
-            >
-              Forgot Password?
-            </a>
-          </div>
-        </form>
+        />
       </div>
-      <Footer />
-    </>
+    </div>
   );
 }
+
+export default Login;

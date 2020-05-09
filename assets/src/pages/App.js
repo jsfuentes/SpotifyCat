@@ -2,14 +2,14 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import DailyIframe from "@daily-co/daily-js";
 
-import Call from "./Call/Call";
+import Call from "src/components/Call/Call";
 import StartButton from "src/components/StartButton";
 // import api from "../../api";
-import Tray from "./Tray/Tray";
-import CallObjectContext from "../CallObjectContext";
-import { roomUrlFromPageUrl, pageUrlFromRoomUrl } from "../urlUtils";
-import { logDailyEvent } from "../logUtils";
+import Tray from "src/components/Tray/Tray";
 import PresenceList from "src/components/PresenceList.js";
+import CallObjectContext from "src/CallObjectContext";
+import { roomUrlFromPageUrl, pageUrlFromRoomUrl } from "src/urlUtils";
+import { logDailyEvent } from "src/logUtils";
 import { myChannel } from "src/socket.js";
 const debug = require("debug")("app:App");
 

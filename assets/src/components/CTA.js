@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import _ from "lodash";
 import { withRouter } from "react-router-dom";
 
-import { axios } from "src/utils.js";
+import { axios } from "src/utils/utils.js";
 
 const uuidv4 = require("uuid/v4");
 
