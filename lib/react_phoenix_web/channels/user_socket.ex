@@ -3,6 +3,7 @@ defmodule ReactPhoenixWeb.UserSocket do
 
   ## Channels
   channel "room:*", ReactPhoenixWeb.RoomChannel
+  channel "user:*", ReactPhoenixWeb.UserChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After

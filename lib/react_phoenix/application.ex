@@ -12,9 +12,9 @@ defmodule ReactPhoenix.Application do
       ReactPhoenix.Repo,
       # Start the endpoint when the application starts
       ReactPhoenixWeb.Endpoint,
-      ReactPhoenixWeb.Presence
+      ReactPhoenixWeb.Presence,
       # Starts a worker by calling: ReactPhoenix.Worker.start_link(arg)
-      # {ReactPhoenix.Worker, arg},
+      {ReactPhoenixWeb.Scheduler, []},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -20,8 +20,10 @@ defmodule ReactPhoenixWeb.ApiController do
   end
 
   def join(conn, _params) do
+    nowUTC = DateTime.utc_now() |> DateTime.to_unix()
     rawPayload = %{
-      privacy: "public"
+      privacy: "public",
+      properties: %{exp: nowUTC + (24 * 60 * 60)}
     }
     payload = Jason.encode!(rawPayload)
     url = "https://api.daily.co/v1/rooms"

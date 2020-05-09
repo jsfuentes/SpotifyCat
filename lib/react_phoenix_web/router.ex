@@ -13,12 +13,21 @@ defmodule ReactPhoenixWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/auth", ReactPhoenixWeb do
+    pipe_through :browser
+  
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
+    post "/:provider/callback", AuthController, :callback
+  end
+
   # Other scopes may use custom stacks.
   scope "/api", ReactPhoenixWeb do
     pipe_through :api
 
     get "/", ApiController, :index
     post "/join", ApiController, :join
+    resources "/users", UserController, except: [:new, :edit]
   end
 
   scope "/", ReactPhoenixWeb do
