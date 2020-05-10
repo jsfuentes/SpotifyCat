@@ -50,7 +50,7 @@ defmodule ReactPhoenix.Accounts do
 
   """
   def create_user(attrs \\ %{}) do
-    IO.puts "create_user" 
+    IO.puts("create_user")
 
     %User{}
     |> User.changeset(attrs)
@@ -59,10 +59,14 @@ defmodule ReactPhoenix.Accounts do
 
   def get_create_google_user(gaccess_token) do
     attrs = fetch_google_profile(gaccess_token)
+
     case Repo.get_by(User, email: attrs.email) do
-      %User{} = user -> 
-        update_user(user, %{gaccess_token: attrs.gaccess_token}) #only update token
-      nil -> create_user(attrs)
+      %User{} = user ->
+        # only update token
+        update_user(user, %{gaccess_token: attrs.gaccess_token})
+
+      nil ->
+        create_user(attrs)
     end
   end
 
@@ -70,6 +74,7 @@ defmodule ReactPhoenix.Accounts do
     url = "https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=" <> gaccess_token
     %HTTPoison.Response{status_code: 200, body: body} = HTTPoison.get!(url)
     profile = Jason.decode!(body)
+
     %{
       gid: profile["id"],
       gaccess_token: gaccess_token,
@@ -96,7 +101,7 @@ defmodule ReactPhoenix.Accounts do
     user
     |> User.changeset(attrs)
     |> Repo.update()
-    |> IO.inspect
+    |> IO.inspect()
   end
 
   @doc """

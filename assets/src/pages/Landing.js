@@ -7,6 +7,7 @@ import Footer from "src/components/Footer";
 
 export default function Landing() {
   const [resp, setResp] = useState("");
+
   useEffect(() => {
     axios
       .get("/api")

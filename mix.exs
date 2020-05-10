@@ -35,7 +35,7 @@ defmodule ReactPhoenix.MixProject do
     [
       {:ecto_sql, "~> 3.1"},
       {:gettext, "~> 0.11"},
-      {:httpoison, "~> 1.6"},
+      {:httpoison, "~> 1.6", override: true},
       {:jason, "~> 1.0"},
       {:phoenix_ecto, "~> 4.0"},
       {:phoenix_html, "~> 2.11"},
@@ -44,6 +44,7 @@ defmodule ReactPhoenix.MixProject do
       {:phoenix, "~> 1.4.16"},
       {:plug_cowboy, "~> 2.0"},
       {:postgrex, ">= 0.0.0"},
+      {:spotify_ex, "~> 2.0.9"},
       {:ueberauth, "~> 0.6"},
       {:ueberauth_google, "~> 0.8"}
     ]

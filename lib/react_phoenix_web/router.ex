@@ -15,7 +15,9 @@ defmodule ReactPhoenixWeb.Router do
 
   scope "/auth", ReactPhoenixWeb do
     pipe_through :browser
-  
+
+    get "/spotify", SpotifyController, :authorize
+    get "/spotify/callback", SpotifyController, :callback
     get "/:provider", AuthController, :request
     get "/:provider/callback", AuthController, :callback
     post "/:provider/callback", AuthController, :callback
@@ -25,6 +27,7 @@ defmodule ReactPhoenixWeb.Router do
   scope "/api", ReactPhoenixWeb do
     pipe_through :api
 
+    get "/spotify/top", SpotifyController, :top
     get "/", ApiController, :index
     post "/join", ApiController, :join
     resources "/users", UserController, except: [:new, :edit]
