@@ -12,10 +12,10 @@ config :react_phoenix,
 
 # Configure your database
 config :react_phoenix, ReactPhoenix.Repo,
-  username: "jorge",
-  password: "[NOT MY REAL PASSWORD]",
-  database: "slingshow-eta-1",
-  hostname: "slingshow-eta-1.c2iava8kbkd6.us-west-1.rds.amazonaws.com",
+  username: System.get_env("DB_USERNAME"),
+  password: System.get_env("DB_PASSWORD"),
+  database: System.get_env("DB_DATABASE"),
+  hostname: System.get_env("DB_HOSTNAME"),
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
@@ -40,8 +40,8 @@ config :ueberauth, Ueberauth,
     google: {Ueberauth.Strategy.Google, []}
   ]
 config :ueberauth, Ueberauth.Strategy.Google.OAuth,
-  client_id: "575235335697-8aehqvefq8935590hck0ap3bg52p36ns.apps.googleusercontent.com",
-  client_secret: "[SOME SECRET]"
+  client_id: System.get_env("GOOGLE_CLIENT_ID"),
+  client_secret: System.get_env("GOOGLE_CLIENT_SECRET")
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
