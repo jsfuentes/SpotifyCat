@@ -10,6 +10,7 @@ defmodule ReactPhoenixWeb.Router do
   end
 
   pipeline :api do
+    plug :fetch_cookies
     plug :accepts, ["json"]
   end
 

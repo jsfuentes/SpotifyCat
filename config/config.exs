@@ -39,6 +39,7 @@ config :ueberauth, Ueberauth,
   providers: [
     google: {Ueberauth.Strategy.Google, []}
   ]
+
 config :ueberauth, Ueberauth.Strategy.Google.OAuth,
   client_id: System.get_env("GOOGLE_CLIENT_ID"),
   client_secret: System.get_env("GOOGLE_CLIENT_SECRET")
@@ -46,7 +47,13 @@ config :ueberauth, Ueberauth.Strategy.Google.OAuth,
 config :spotify_ex,
   client_id: System.get_env("SPOTIFY_CLIENT_ID"),
   secret_key: System.get_env("SPOTIFY_CLIENT_SECRET"),
-  scopes: ["user-top-read", "user-read-currently-playing", "playlist-read-private", "user-follow-read", "user-read-recently-played"],
+  scopes: [
+    "user-top-read",
+    "user-read-currently-playing",
+    "playlist-read-private",
+    "user-follow-read",
+    "user-read-recently-played"
+  ],
   callback_url: "http://localhost:4000/auth/spotify/callback"
 
 # Import environment specific config. This must remain at the bottom

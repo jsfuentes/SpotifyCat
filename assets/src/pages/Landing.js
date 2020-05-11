@@ -1,50 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import conf from "src/conf";
 import { axios } from "src/utils/utils.js";
 import Navbar from "src/components/Navbar";
 import Footer from "src/components/Footer";
 
 export default function Landing() {
-  const [resp, setResp] = useState("");
-
-  useEffect(() => {
-    axios
-      .get("/api")
-      .then((response) => {
-        console.log("Haha", response);
-        setResp(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  function login() {
+    window.location.href = conf.get("CLIENT_URL") + "/auth/spotify";
+  }
 
   return (
-    <>
-      <Navbar>
-        <Link to="/login" className="navlink">
-          Login
-        </Link>
-      </Navbar>
+    <div className="flex flex-col w-screen h-screen justify-center items-center">
+      <Navbar />
 
-      <div className="w-full p-8">
-        <div className="px-4 pb-4 flex flex-col justify-center items-center">
-          <div className="text-4xl block font-bold mb-4">
-            Welcome to React Base BB
-          </div>
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4"
-            type="button"
-          >
-            Useless Button
-          </button>
-          <div className="text-2xl block font-bold mb-4">
-            {resp ? `The Server Says "${resp}"` : "The Server Can't Be Reached"}
-          </div>
+      <div className="w-full p-12 flex-1 flex flex-col justify-center items-center">
+        <div className="text-4xl block font-bold mb-4 text-center">
+          View Your Top Songs and Artists!
         </div>
+        <button
+          className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4"
+          type="button"
+          onClick={login}
+        >
+          Login With Spotify
+        </button>
       </div>
+
       <Footer />
-    </>
+    </div>
   );
 }
