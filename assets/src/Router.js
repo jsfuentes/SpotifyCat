@@ -7,7 +7,6 @@ import ErrorBoundary from "src/components/ErrorBoundary";
 
 import Landing from "src/pages/Landing";
 import my404 from "src/pages/my404";
-import Login from "src/pages/Login";
 import Top from "src/pages/Top";
 import UserContext from "src/contexts/UserContext.js";
 
@@ -26,7 +25,6 @@ export default function Router() {
         {/* <Suspense fallback={<Loading />}> */}
         <BrowserRouter>
           <Switch>
-            <Route exact path="/login" component={Login} />
             <Route exact path="/" component={Landing} />
             <Route exact path="/top" component={Top} />
             <Route component={my404} />

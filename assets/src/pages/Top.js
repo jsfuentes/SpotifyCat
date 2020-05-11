@@ -11,11 +11,13 @@ function Top() {
   const [top, setTop] = useState(null);
 
   useEffect(() => {
+    //async function so I can use await inside a useEffect
     async function f() {
       try {
         const resp = await axios.get(`/api/spotify/top?limit=${TOP_COUNT}`);
         setTop(resp.data);
       } catch (err) {
+        //redirect to login page if not logged in
         if (err.response.status === 401) {
           debug("Unauthorized");
           window.location.href = conf.get("CLIENT_URL") + "/auth/spotify";
@@ -28,6 +30,7 @@ function Top() {
     f();
   }, []);
 
+  //Show Loading Icon while loading data
   if (!top) return <Loading />;
 
   return <div>{JSON.stringify(top)}</div>;
