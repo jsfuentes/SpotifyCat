@@ -9,13 +9,16 @@ const debug = require("debug")("app:SongList");
 function SongList(props) {
   debug(props.tracks);
 
-  const listItems = props.tracks.map((track) => <SongListItem track={track} />);
+  const shades = ["primary-1", "secondary-1", "secondary-2"];
+  const listItems = props.tracks.map((track) => (
+    <SongListItem track={track} shade="primary-1" />
+  ));
 
   return (
-    <div className="w-full overflow-x-auto">
+    <div className="w-full">
       <div className="song-list-title">{props.title}</div>
-      <div className="song-list">
-        <div className="flex flex-row justify-center items-center bg-white">
+      <div className="song-list overflow-x-auto w-full">
+        <div className="flex flex-row justify-center items-center ">
           {listItems}
         </div>
       </div>

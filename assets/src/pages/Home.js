@@ -39,11 +39,13 @@ function Home() {
   if (!top) return <Loading />;
   return (
     <>
-      <div className="flex flex-col mx-8 my-2">
+      <div className="home-container">
         <Header />
-        <SongList tracks={top.tracks.long_term} title={"Long Term"} />
-        <SongList tracks={top.tracks.medium_term} title={"Medium Term"} />
-        <SongList tracks={top.tracks.short_term} title={"Short Term"} />
+        <div className="song-list-container">
+          <SongList tracks={top.tracks.long_term} title={"Long Term"} />
+          <SongList tracks={top.tracks.medium_term} title={"Medium Term"} />
+          <SongList tracks={top.tracks.short_term} title={"Short Term"} />
+        </div>
         <Footer />
       </div>
     </>
