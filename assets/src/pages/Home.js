@@ -39,9 +39,11 @@ function Home() {
   if (!top) return <Loading />;
   return (
     <>
-      <Header/>
-      <SongList tracks={top.tracks}></SongList>
-      <Footer></Footer>
+      <div className="home-container">
+        <Header/>
+        <SongList tracks={top.tracks}></SongList>
+        <Footer></Footer>
+      </div>
     </>
   );
 }

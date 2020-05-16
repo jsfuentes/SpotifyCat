@@ -1,6 +1,11 @@
 @import url("colors.css");
 
 .footer {
+  grid-row-start:    footer;
+  grid-row-end:      footer;
+  grid-column-start: footer;
+  grid-column-end:   footer;
+
   margin-bottom: 5px;
   width: 100%;
   color: #6A6B6A;

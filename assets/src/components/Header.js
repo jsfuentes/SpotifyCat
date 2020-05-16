@@ -26,12 +26,10 @@ import "../css/header.css";
   // );
 export default function Header() {
   return (
-    <div class="header">
-    <div class="header-right">
-        <a href="#home">Logout</a>
-      </div>
-      <a href="/" class="logo"><div><img src={Logo} alt="logo"/> <p>Spotify Cat</p></div></a>
-      
-    </div> 
+    <div className="header-container">
+      <a href="/" className="logo"><img className="logo-image" src={Logo} alt="logo"/></a>
+      <div className="title">Spotify Cat</div>
+      <div className="logout-button-container"><a href="#home" className="logout-button">Logout</a></div>
+    </div>
   );
 }
