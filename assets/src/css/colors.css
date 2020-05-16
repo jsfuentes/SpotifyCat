@@ -1,0 +1,25 @@
+:root {
+	--base-shade-1: #282828;
+	--base-shade-2: #212121;
+	--white: #EDECEC;
+
+    --primary-1-shade-1: #C88AA9;
+    --primary-1-shade-2: #A4577E;
+    --primary-1-shade-3: #87355F;
+    --primary-1-shade-4: #6C1C45;
+    --primary-1-shade-5: #4A0729;
+
+    --secondary-1-shade-1: #80BA8A;
+    --secondary-1-shade-2: #51995D;
+    --secondary-1-shade-3: #317E3F;
+    --secondary-1-shade-4: #1A6427;
+    --secondary-1-shade-5: #064511;
+
+    --secondary-2-shade-1: #EEF1A6;
+    --secondary-2-shade-2: #C3C669;
+    --secondary-2-shade-3: #A0A340;
+    --secondary-2-shade-4: #7F8222;
+    --secondary-2-shade-5: #565908;
+
+}
+

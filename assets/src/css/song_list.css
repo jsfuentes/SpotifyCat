@@ -1,0 +1,42 @@
+.song-list {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	background-color: var(--base-shade-2);
+	padding: 2%;
+}
+
+.song-list-container {
+	margin-top:5%;
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	margin-left: 10%;
+}
+
+.song-list-title {
+	color: #EDECEC;
+	margin-bottom: 5px;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 1.5em;
+}
+
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 500px) {
+  .song-list {
+    text-align: center;
+  }
+
+  .song-list-item {
+  	display:inline-block;
+  }
+
+  .song-list-title {
+  	text-align: center;
+  }
+
+  .header-right {
+    float: none;
+  }
+}

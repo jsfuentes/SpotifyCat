@@ -8,6 +8,8 @@ import ErrorBoundary from "src/components/ErrorBoundary";
 import Landing from "src/pages/Landing";
 import my404 from "src/pages/my404";
 import Top from "src/pages/Top";
+// import Login from "src/pages/Login";
+import Home from "src/pages/Home";
 import UserContext from "src/contexts/UserContext.js";
 
 toast.configure({
@@ -26,7 +28,7 @@ export default function Router() {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Landing} />
-            <Route exact path="/top" component={Top} />
+            <Route exact path="/top" component={Home} />
             <Route component={my404} />
           </Switch>
         </BrowserRouter>

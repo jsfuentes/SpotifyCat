@@ -1,5 +1,7 @@
 import React from "react";
-import "../css/footer.css";
+import Logo from "../img/logo.svg";
+
+import "../css/header.css";
 
   // return (
   //   <footer className="bg-gray-200 w-full h-auto py-12">
@@ -22,10 +24,14 @@ import "../css/footer.css";
   //     </div>
   //   </footer>
   // );
-export default function Footer() {
+export default function Header() {
   return (
-    <footer className="footer">
-      Made by Thomas Chang and Jorge Fuentes.
-    </footer>
+    <div class="header">
+    <div class="header-right">
+        <a href="#home">Logout</a>
+      </div>
+      <a href="/" class="logo"><div><img src={Logo} alt="logo"/> <p>Spotify Cat</p></div></a>
+      
+    </div> 
   );
 }

@@ -1,0 +1,7 @@
+@import url("colors.css");
+
+html, body {
+	background-color: var(--base-shade-1);
+	margin: 0;
+	padding: 0;
+}

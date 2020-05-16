@@ -1,0 +1,9 @@
+@import url("colors.css");
+
+.footer {
+  margin-bottom: 5px;
+  width: 100%;
+  color: #6A6B6A;
+  text-align: center;
+  margin-top: 10%;
+}

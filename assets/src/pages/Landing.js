@@ -13,8 +13,6 @@ export default function Landing() {
 
   return (
     <div className="flex flex-col w-screen h-screen justify-center items-center">
-      <Navbar />
-
       <div className="w-full p-12 flex-1 flex flex-col justify-center items-center">
         <div className="text-4xl block font-bold mb-4 text-center">
           View Your Top Songs and Artists!
