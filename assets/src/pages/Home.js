@@ -10,13 +10,13 @@ import Loading from "src/components/Loading.js";
 import SongList from "src/components/SongList.js";
 const debug = require("debug")("app:pages:top");
 
-const TOP_COUNT = 1;
+const TOP_COUNT = 10;
 
 import "../css/home.css";
 
 function Home() {
   const [top, setTop] = useState(null);
-  
+
   useEffect(() => {
     async function f() {
       try {
@@ -40,7 +40,7 @@ function Home() {
   return (
     <>
       <div className="home-container">
-        <Header/>
+        <Header />
         <SongList tracks={top.tracks}></SongList>
         <Footer></Footer>
       </div>

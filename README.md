@@ -2,11 +2,14 @@
 
 To start your Phoenix server:
 
-- Install dependencies with `mix deps.get`
-- Create and migrate your database with `mix ecto.setup`
-- Create .env file with all the variables needed in `config.exs`
-- Install Node.js dependencies with `cd assets && npm install`
-- Start Phoenix endpoint with `mix phx.server`
+```bash
+cd assets
+npm install
+cd ..
+mix deps.get
+source .env
+mix phx.server
+```
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
