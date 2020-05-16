@@ -11,20 +11,22 @@ import "../css/song_list_item.css";
 
 // TODO: handle when song titles are really long and overflow
 function SongListItem(props) {
-  let imageUrl, title, subtitle;
+  let imageUrl, title, subtitle, onClick;
   const track = props.track;
   if (track.type === "track") {
     imageUrl = track.album.images[0].url;
     title = track.name;
     subtitle = track.artists[0].name;
+    onClick = () => (window.location.href = track.external_urls.spotify);
   } else {
     imageUrl = track.images[0].url;
     title = track.name;
     subtitle = track.genres.slice(0, 2).join(" | ");
+    onClick = () => (window.location.href = track.external_urls.spotify);
   }
 
   return (
-    <>
+    <div onClick={onClick}>
       <div
         className={classNames(
           "song-listing-item",
@@ -74,7 +76,7 @@ function SongListItem(props) {
           {subtitle}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
