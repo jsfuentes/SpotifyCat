@@ -11,6 +11,18 @@ import "../css/song_list_item.css";
 
 // TODO: handle when song titles are really long and overflow
 function SongListItem(props) {
+  let imageUrl, title, subtitle;
+  const track = props.track;
+  if (track.type === "track") {
+    imageUrl = track.album.images[0].url;
+    title = track.name;
+    subtitle = track.artists[0].name;
+  } else {
+    imageUrl = track.images[0].url;
+    title = track.name;
+    subtitle = track.genres.slice(0, 2).join(" | ");
+  }
+
   return (
     <>
       <div
@@ -36,12 +48,12 @@ function SongListItem(props) {
           )}
         ></div>
         <img
-          src={props.track.album.images[0].url}
+          src={imageUrl}
           className="cover-photo cover-photo-back"
           alt="cover art"
         />
         <img
-          src={props.track.album.images[0].url}
+          src={imageUrl}
           className="cover-photo cover-photo-front"
           alt="cover art"
         />
@@ -51,7 +63,7 @@ function SongListItem(props) {
             "text-" + props.shade + "-shade-5"
           )}
         >
-          {props.track.name}
+          {title}
         </div>
         <div
           className={classNames(
@@ -59,7 +71,7 @@ function SongListItem(props) {
             "text-" + props.shade + "-shade-1"
           )}
         >
-          {props.track.artists[0].name}
+          {subtitle}
         </div>
       </div>
     </>

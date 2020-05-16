@@ -1,11 +1,12 @@
 @import url("base_styles.css");
 
 .home-container {
-	width: 100%;
-	display: grid;
-	grid-template-areas:   "margin1 header margin2"
-	                        "margin1 content margin2"
-	                        "margin1 footer margin2";
-	grid-template-rows:    auto auto auto;
-	grid-template-columns: 10% 1fr 10%;
+  width: 100vw;
+  display: grid;
+  grid-template-areas:
+    "margin1 header margin2"
+    "margin1 content margin2"
+    "margin1 footer margin2";
+  grid-template-rows: auto auto auto;
+  grid-template-columns: 10% minmax(0, 1fr) 10%;
 }

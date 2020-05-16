@@ -4,13 +4,10 @@
   padding-top: 30px;
   display: grid;
 
-  grid-template-areas:   "logo title logout";
+  grid-template-areas: "logo title logout";
   grid-template-columns: auto auto 1fr;
   grid-template-rows: auto;
-  grid-row-start:    header;
-  grid-row-end:      header;
-  grid-column-start: header;
-  grid-column-end:   header;
+  grid-area: header;
 }
 
 .logo-image {
@@ -19,30 +16,23 @@
 }
 
 .logo {
-  grid-row-start:    logo;
-  grid-row-end:      logo;
-  grid-column-start: logo;
-  grid-column-end:   logo;
+  grid-area: logo;
 }
 
 .title {
-  grid-row-start:    title;
-  grid-row-end:      title;
-  grid-column-start: title;
-  grid-column-end:   title;
+  grid-area: title;
   margin-top: auto;
-  margin-bottom:  auto;
+  margin-bottom: auto;
   color: var(--white);
   font-size: 25px;
   font-weight: bold;
-
 }
 
 .logout-button-container {
-  grid-row-start:    logout;
-  grid-row-end:      logout;
+  grid-row-start: logout;
+  grid-row-end: logout;
   grid-column-start: logout;
-  grid-column-end:   logout;
+  grid-column-end: logout;
 }
 
 .logout-button {

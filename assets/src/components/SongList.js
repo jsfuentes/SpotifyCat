@@ -11,11 +11,15 @@ function SongList(props) {
 
   const shades = ["primary-1", "secondary-1", "secondary-2"];
   const listItems = props.tracks.map((track) => (
-    <SongListItem track={track} shade="primary-1" />
+    <SongListItem
+      key={track.id}
+      track={track}
+      shade={shades[Math.floor(Math.random() * shades.length)]}
+    />
   ));
 
   return (
-    <div className="w-full">
+    <div className="w-full my-3">
       <div className="song-list-title">{props.title}</div>
       <div className="song-list overflow-x-auto w-full">
         <div className="flex flex-row justify-center items-center ">
