@@ -4,11 +4,20 @@
 }
 
 .song-list {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  background-color: var(--base-shade-2);
-  padding: 2%;
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	background-color: var(--base-shade-2);
+	padding: 2%;
+}
+
+.song-list::-webkit-scrollbar {
+  display: none;
+}
+
+.song-list {
+	-ms-overflow-style: none;
+	overflow: -moz-scrollbars-none;
 }
 /*
 .song-list-container {
@@ -23,7 +32,6 @@
   color: #edecec;
   margin-bottom: 5px;
   font-weight: bold;
-  text-transform: uppercase;
   font-size: 1.5em;
 }
 

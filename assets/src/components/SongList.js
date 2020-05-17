@@ -19,10 +19,10 @@ function SongList(props) {
   ));
 
   return (
-    <div className="w-full my-3">
+    <div className="w-full my-7">
       <div className="song-list-title">{props.title}</div>
       <div className="song-list overflow-x-auto w-full">
-        <div className="flex flex-row justify-center items-center ">
+        <div className="flex flex-row justify-center items-center">
           {listItems}
         </div>
       </div>

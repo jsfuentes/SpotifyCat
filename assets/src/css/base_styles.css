@@ -2,11 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@700&display=swap');
 
 html, body {
- background: rgb(40,40,40);
-background: linear-gradient(180deg, rgba(40,40,40,1) 0%, rgba(54,54,54,1) 95%, rgba(77,77,77,1) 100%); 	margin: 0;
+ 	background: rgb(40,40,40);
+	background: linear-gradient(180deg, rgba(40,40,40,1) 0%, rgba(54,54,54,1) 95%, rgba(77,77,77,1) 100%); 	margin: 0;
 	padding: 0;
 	height: 100vh;
 	width: 100%;
+	background-repeat: no-repeat;
+  	background-attachment: fixed;
 }
 
 * {

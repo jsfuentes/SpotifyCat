@@ -1,0 +1,43 @@
+@import url("base_styles.css");
+
+.landing-container {
+	display: grid;
+	grid-template-areas:    "margin-left logo margin-right"
+                        	"margin-left description margin-right"
+                        	"margin-left login-button margin-right"
+                        	"margin-left footer margin-right";
+    grid-template-rows:    auto auto auto 1fr;
+	grid-template-columns: 10% 1fr 10%;
+	height: 100vh;
+}
+
+.logo-landing {
+	grid-area: logo;
+	margin-top: 100px;
+}
+
+.logo-landing-image {
+	width: 150px;
+	height: 150px;
+	margin: auto;
+}
+
+.description {
+	grid-area: description;
+	text-align: center;
+	color: var(--white);
+	font-size: 2em;
+	margin-top: 50px;
+}
+
+.login-button {
+	grid-area: login-button;
+	width: 200px;
+	margin: auto;
+	margin-top: 25px;
+}
+
+.footer {
+	grid-area: footer;
+	display: flex;
+}
