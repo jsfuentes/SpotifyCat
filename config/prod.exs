@@ -12,12 +12,24 @@ use Mix.Config
 
 config :react_phoenix, ReactPhoenixWeb.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [scheme: "https", host: "mysterious-tor-16357.herokuapp.com/", port: 443],
+  url: [scheme: "https", host: "mysterious-tor-16357.herokuapp.com", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
 config :logger, level: :info
+
+config :spotify_ex,
+  client_id: System.get_env("SPOTIFY_CLIENT_ID"),
+  secret_key: System.get_env("SPOTIFY_CLIENT_SECRET"),
+  scopes: [
+    "user-top-read",
+    "user-read-currently-playing",
+    "playlist-read-private",
+    "user-follow-read",
+    "user-read-recently-played"
+  ],
+  callback_url: "http://mysterious-tor-16357.herokuapp.com/auth/spotify/callback"
 
 # ## SSL Support
 #
