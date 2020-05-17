@@ -25,7 +25,7 @@ import "../css/footer.css";
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="footer-text">Made by Thomas Chang and Jorge Fuentes.</div>
+      <div className="footer-text">© 2020 Made with 🌽 by the Cheetah Sistas.</div>
     </footer>
   );
 }

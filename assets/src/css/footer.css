@@ -8,9 +8,10 @@
 
   margin-bottom: 5px;
   width: 100%;
-  color: #6A6B6A;
-  margin-top: 10%;
+/*  color: #6A6B6A;
+*/  margin-top: 10%;
   display: flex;
+  color: var(--white);
 }
 
 .footer-text {
