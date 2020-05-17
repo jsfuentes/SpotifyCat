@@ -6,23 +6,46 @@ import SongListItem from "src/components/SongListItem.js";
 import "../css/song_list.css";
 const debug = require("debug")("app:SongList");
 
+function getLoopingIndex(lst, i) {
+  if (i >= lst.length) {
+    return 0;
+  }
+  return i;
+}
+
 function SongList(props) {
   debug(props.tracks);
 
-  const shades = ["primary-1", "secondary-1", "secondary-2"];
+  const shades = ["primary-1", "secondary-1", "secondary-2", "secondary-3"];
+  let prev = -1;
+
+  function getShade() {
+    let i = Math.floor(Math.random() * shades.length);
+    if (i == prev) {
+      prev = getLoopingIndex(shades, i+1);
+      console.log("returning " + prev + " with i " + i);
+      return shades[prev]
+    } else {
+      prev = i;
+      console.log("Returning " + prev);
+      return shades[i]
+    }
+    
+  }
+
   const listItems = props.tracks.map((track) => (
     <SongListItem
       key={track.id}
       track={track}
-      shade={shades[Math.floor(Math.random() * shades.length)]}
+      shade={getShade()}
     />
   ));
 
   return (
-    <div className="w-full my-3">
+    <div className="w-full my-7">
       <div className="song-list-title">{props.title}</div>
       <div className="song-list overflow-x-auto w-full">
-        <div className="flex flex-row justify-center items-center ">
+        <div className="flex flex-row justify-center items-center">
           {listItems}
         </div>
       </div>

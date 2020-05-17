@@ -43,12 +43,12 @@ function Home() {
       <div className="home-container">
         <Header />
         <div className="song-list-container">
-          <div className="text-3xl text-white w-full text-center">Songs</div>
+          <div className="text-3xl text-white w-full text-center">Your Top Songs</div>
           <SongList tracks={top.tracks.long_term} title={"Long Term"} />
           <SongList tracks={top.tracks.medium_term} title={"Medium Term"} />
           <SongList tracks={top.tracks.short_term} title={"Short Term"} />
           <br />
-          <div className="text-3xl text-white w-full text-center">Artists</div>
+          <div className="text-3xl text-white w-full text-center">Your Top Artists</div>
           <SongList tracks={top.artists.long_term} title={"Long Term"} />
           <SongList tracks={top.artists.medium_term} title={"Medium Term"} />
           <SongList tracks={top.artists.short_term} title={"Short Term"} />

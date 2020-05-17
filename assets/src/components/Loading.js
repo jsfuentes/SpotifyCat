@@ -1,6 +1,6 @@
 import React from "react";
 
-import Logo from "src/img/logo.png";
+import Logo from "src/img/logo.svg";
 
 export default function Loading() {
   return (
