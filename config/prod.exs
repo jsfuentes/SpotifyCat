@@ -15,7 +15,7 @@ config :react_phoenix, ReactPhoenixWeb.Endpoint,
   url: [scheme: "https", host: "mysterious-tor-16357.herokuapp.com", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json"
-
+ 
 # Do not print debug messages in production
 config :logger, level: :info
 
@@ -29,7 +29,7 @@ config :spotify_ex,
     "user-follow-read",
     "user-read-recently-played"
   ],
-  callback_url: "http://mysterious-tor-16357.herokuapp.com/auth/spotify/callback"
+  callback_url: "https://mysterious-tor-16357.herokuapp.com/auth/spotify/callback"
 
 # ## SSL Support
 #
