@@ -214,3 +214,15 @@
   font-weight: bold;
   font-size: 0.6em;
 }
+
+.video-thumbnail{
+  display: inline-block;
+  cursor: pointer;
+  margin: 30px;
+  position:relative;
+  z-index: 10000000000;
+}
+
+.relative{
+  position:relative;
+}
