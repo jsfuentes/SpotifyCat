@@ -14,7 +14,7 @@ defmodule ReactPhoenixWeb.SpotifyController do
         redirect(conn, to: "/top")
 
       {:error, reason, conn} ->
-        conn 
+        conn
         |> put_flash(:error, "Spotify authentication failed: #{reason}")
         |> redirect(to: "/")
     end
@@ -33,7 +33,7 @@ defmodule ReactPhoenixWeb.SpotifyController do
 
     # ensure the token is active
     case HTTPoison.get("https://api.spotify.com/v1/me", headers) do
-      #Valid Token
+      # Valid Token
       {:ok, %HTTPoison.Response{status_code: 200}} ->
         types = ["artists", "tracks"]
         ranges = ["short_term", "medium_term", "long_term"]
@@ -60,7 +60,7 @@ defmodule ReactPhoenixWeb.SpotifyController do
 
         json(conn, all_results)
 
-      #Expired Token
+      # Expired Token
       {:ok, %HTTPoison.Response{status_code: 401}} ->
         conn
         |> put_status(401)
@@ -75,6 +75,7 @@ defmodule ReactPhoenixWeb.SpotifyController do
 
   def top(conn, _params) do
     IO.puts("No Cookie")
+
     conn
     |> put_status(401)
     |> text("No Spotify Token")

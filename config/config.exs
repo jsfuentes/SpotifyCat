@@ -52,7 +52,10 @@ config :spotify_ex,
     "user-read-currently-playing",
     "playlist-read-private",
     "user-follow-read",
-    "user-read-recently-played"
+    "user-read-recently-played",
+    "streaming",
+    "user-read-email",
+    "user-read-private"
   ],
   callback_url: "http://localhost:4000/auth/spotify/callback"
 
