@@ -2,6 +2,7 @@
   "repository": {},
   "license": "MIT",
   "scripts": {
+    "heroku-prebuild": "npm install --dev",
     "deploy": "webpack --mode production",
     "watch": "webpack --mode development --watch"
   },
